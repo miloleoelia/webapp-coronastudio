@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import dao.DaoPaziente;
-import model.Misurazione;
+import model.out.Misurazione;
 
 @RestController
 @RequestMapping(path = "/api", consumes = MediaType.APPLICATION_JSON_VALUE, 

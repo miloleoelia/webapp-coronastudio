@@ -12,34 +12,46 @@
             http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<!-- Provide support for component scanning -->
-	<context:component-scan base-package="controller" />
-	
-	<bean name="daoPaziente" class="dao.DaoPazienteImpl"/>
+	<context:component-scan
+		base-package="controller" />
+
+	<bean name="daoPaziente" class="dao.DaoPazienteImpl" />
 
 	<!--Provide support for conversion, formatting and validation -->
 	<mvc:annotation-driven />
-	
+
 	<!-- Define Spring MVC view resolver -->
 	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsp/"></property>
-		<property name="suffix" value=".jsp"></property>
+		class="org.springframework.web.servlet.view.tiles3.TilesViewResolver" />
+	<bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
 	</bean>
-	
-	<!-- JPA -->
-<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-    <property name="dataSource" ref="dataSource" />
-    <property name="persistenceUnitName" value="webapp-coronastudio" />
-    <property name="jpaVendorAdapter">
-        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
-    </property>
-</bean>
- 
-<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-    <property name="url" value="jdbc:mysql://localhost:3306/coronastudio" />
-    <property name="username" value="root" />
-    <property name="password" value="3Pace&amp;Amore" />
-</bean>
-	
+
+	<!-- JPA 
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceUnitName"
+			value="webapp-coronastudio" />
+		<property name="jpaVendorAdapter">
+			<bean
+				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+	</bean>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/coronastudio" />
+		<property name="username" value="root" />
+		<property name="password" value="3Pace&amp;Amore" />
+	</bean>
+-->
 </beans>  

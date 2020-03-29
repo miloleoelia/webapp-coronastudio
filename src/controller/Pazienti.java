@@ -35,6 +35,13 @@ public class Pazienti {
 				);
 		sommario.setMisurazioni(
 				dao.getMisurazioni(cf)
+				.stream()
+				.sorted((Misurazione a, Misurazione b) -> {
+					if(a.getData() == null || b.getData() == null)
+						return 1;
+					return a.getData().compareTo(b.getData());
+				})
+				.collect(Collectors.toList())
 				);
 		
 		m.addAttribute("sommario", sommario);
